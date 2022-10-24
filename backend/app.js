@@ -1,9 +1,11 @@
 const express = require ('express');
-const helmet =require ('helmet')
+const helmet =require ('helmet');
 const mongoose = require('mongoose');
 const path=require('path');
 const stuffRoutes =require('./routes/stuff');
 const userRoutes = require('./routes/user');
+
+
 
 //installation de mongoDB
 mongoose.connect('mongodb+srv://ps:sapa@cluster0.2efuami.mongodb.net/test?retryWrites=true&w=majority',
@@ -15,7 +17,7 @@ mongoose.connect('mongodb+srv://ps:sapa@cluster0.2efuami.mongodb.net/test?retryW
 const app = express();
 
 app.use(express.json());
-app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
 
 //pour que 2 ressources 3000 et 4200 communique entre eux, on rajoute des headers
 app.use((req, res, next) => {
