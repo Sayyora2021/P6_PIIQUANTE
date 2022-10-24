@@ -1,26 +1,35 @@
 const bcrypt = require('bcrypt');
+//importation de cryptoJS pour chiffrer le mail
+const cryptojs = require('crypto-js');
 
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+//importer le package pour utiliser les variables d'environnement
+const dotenv = require ("dotenv").config()
 
-//controller
+//controller de singup
 exports.signup =(req, res, next)=>{
+
+//chiffrer email avant de l'envoyer dans la bdd
+const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CLE_EMAIL}`).toString();
+
 bcrypt.hash(req.body.password, 10)
 .then(hash =>{
     const user =new User({
-        email: req.body.email,
-        password: hash
+        email: emailCryptoJs,
+        password: hash,
                
     });
     user.save()
     .then(()=>res.status(201).json({message: 'Utilisateur créé!'}))
-    .catch(error=>res.status(400).json({error}));
+    .catch(error=>res.status(400).json({error: 'mail nest pas correct'}));
 })
 .catch(error => res.status(500).json({error}));
 };
 
 exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email })
+    const emailCryptoJs = cryptojs.HmacSHA256(req.body.email, `${process.env.CLE_EMAIL}`).toString();
+    User.findOne({ email: emailCryptoJs })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé !' });

@@ -1,9 +1,7 @@
 const express = require ('express');
+const helmet =require ('helmet')
 const mongoose = require('mongoose');
 const path=require('path');
-
-
-
 const stuffRoutes =require('./routes/stuff');
 const userRoutes = require('./routes/user');
 
@@ -17,7 +15,7 @@ mongoose.connect('mongodb+srv://ps:sapa@cluster0.2efuami.mongodb.net/test?retryW
 const app = express();
 
 app.use(express.json());
-
+app.use(helmet());
 
 //pour que 2 ressources 3000 et 4200 communique entre eux, on rajoute des headers
 app.use((req, res, next) => {
@@ -26,6 +24,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
+
 
 app.use('/api/sauces', stuffRoutes);
 app.use('/api/auth', userRoutes);
