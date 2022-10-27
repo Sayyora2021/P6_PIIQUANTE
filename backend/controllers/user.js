@@ -4,8 +4,7 @@ const cryptojs = require('crypto-js');
 
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-//importer le package pour utiliser les variables d'environnement
-const dotenv = require ("dotenv").config()
+
 
 //controller de singup
 exports.signup =(req, res, next)=>{
