@@ -1,6 +1,5 @@
 //importer le package pour utiliser les variables d'environnement
 const dotenv = require ('dotenv').config('../.env')
-console.log(dotenv)
 const express = require ('express');
 const helmet =require ('helmet');
 const mongoose = require('mongoose');
@@ -12,8 +11,7 @@ const userRoutes = require('./routes/user');
 
 //installation de mongoDB
 const {DB_USER, DB_PASSWORD, DB_CLUSTER_NAME}= process.env;
-mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_CLUSTER_NAME}
-.mongodb.net/test?retryWrites=true&w=majority`,
+mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_CLUSTER_NAME}.mongodb.net/test?retryWrites=true&w=majority`,
 
 //mongoose.connect('mongodb+srv://ps:sapa@cluster0.2efuami.mongodb.net/test?retryWrites=true&w=majority',
   { useNewUrlParser: true,
