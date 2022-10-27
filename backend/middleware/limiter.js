@@ -1,6 +1,7 @@
 const rateLimit = require('express-rate-limit');
+
 //creation de rate-limiter
-const limiter = rateLimit;
+const limit = rateLimit;
 
 module.exports=rateLimit ({
    
