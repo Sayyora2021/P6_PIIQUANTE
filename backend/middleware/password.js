@@ -10,7 +10,7 @@ passwordSchema
 .is().max(10)                                    //max length 10
 .has().uppercase()                               //must have uppercase
 .has().lowercase()                               //must have lowercase
-.has().digits(2)                                //must have 2 difits (2 chiffres)
+.has().digits(2)                                //must have 2 digits (2 chiffres)
 .has().not().spaces()                           //No spaces
 .is().not().oneOf(['Passw0rd', 'Password123', 'Azerty1', 'Azerty2']); //Blacklist these values
 
