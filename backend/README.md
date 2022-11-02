@@ -6,6 +6,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Backend
 Run `cd backend` to navigate to backend folder.
 
+Run `npm install`
+
+ Dans le fichier .env :
+- mettre le `PORT` à 3000
+- mettre le nom d'utilisateur de la base de donnée pour `DB_USER` 
+- mettre le mot de passe de la base de donnée pour `DB_PASSWORD`
+- mettre le nom du cluster mongodb pour `DB_CLUSTER_NAME`
+
 Install nodemon `npm install -g nodemon` . Nodemon is a tool that helps develop Node.js based applications by automatically restarting the node application when file changes in the directory are detected.
 
 Run `nodemon server` to start the automatically file changes.
